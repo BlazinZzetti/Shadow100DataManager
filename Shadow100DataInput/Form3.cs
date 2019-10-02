@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shadow100DataInput.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,27 +27,9 @@ namespace Shadow100DataInput
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var configXml = new XmlDocument();
-            var databaseLocation = "";
-            //Double Check in case the file creation failed 
-            //if we attempted to create one.
-            if (File.Exists(Form1.configXmlString))
-            {                    
-                configXml.Load(Form1.configXmlString);
-
-                //Get Database Location stored in configXml.
-                foreach (XmlElement node in configXml.DocumentElement)
-                {
-                    if (node.Name == "DatabaseLocation")
-                    {
-                        databaseLocation = node.InnerText;
-                    }
-                }
-            }
-
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.InitialDirectory = databaseLocation;
+                sfd.InitialDirectory = Config.Instance.DatabaseLocation;
                 sfd.AddExtension = true;
                 sfd.DefaultExt = "xprofile";
                 sfd.Filter = "xprofile (*.xprofile)|*.xprofile";

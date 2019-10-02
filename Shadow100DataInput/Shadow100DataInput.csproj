@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\Level.cs" />
     <Compile Include="Classes\Mission.cs" />
     <Compile Include="Classes\Profile.cs" />

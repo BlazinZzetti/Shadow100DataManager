@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shadow100DataInput.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,25 +33,9 @@ namespace Shadow100DataInput
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    //Double Check in case the file creation failed 
-                    //if we attempted to create one.
-                    if (File.Exists(Form1.configXmlString))
-                    {
-                        var configXml = new XmlDocument();
-                        configXml.Load(Form1.configXmlString);
-
-                        //Get Database Location stored in configXml.
-                        foreach (XmlElement node in configXml.DocumentElement)
-                        {
-                            if (node.Name == "DatabaseLocation")
-                            {
-                                node.InnerText = fbd.SelectedPath;
-                            }
-                        }
-
-                        configXml.Save(Form1.configXmlString);
-                        Close();
-                    }
+                    Config.Instance.DatabaseLocation = fbd.SelectedPath;
+                    Config.Instance.Save();
+                    Close();
                 }
             }
         }
