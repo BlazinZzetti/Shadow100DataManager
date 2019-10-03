@@ -8,8 +8,15 @@ namespace Shadow100DataInput.Classes
 {
     public class Level
     {
+        public enum MissionType
+        {
+            Dark,
+            Normal,
+            Hero
+        }
+
         private string name;
-        private List<Mission> missions;
+        private List<MissionType> missions;
         private bool[] keys = new bool[5];
 
         public string Name
@@ -18,13 +25,21 @@ namespace Shadow100DataInput.Classes
             {
                 return name;
             }
+            set
+            {
+                name = value;
+            }
         }
 
-        public List<Mission> Missions
+        public List<MissionType> Missions
         {
             get
             {
                 return missions;
+            }
+            set
+            {
+                missions = value;
             }
         }
 
@@ -34,6 +49,25 @@ namespace Shadow100DataInput.Classes
             {
                 return keys;
             }
+            set
+            {
+                keys = value;
+            }
+        }
+
+        public Level()
+        {
+        }
+
+        public Level(string name, List<MissionType> missions)
+        {
+            this.name = name;
+            this.missions = missions;
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

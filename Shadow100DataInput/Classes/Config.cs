@@ -132,38 +132,6 @@ namespace Shadow100DataInput.Classes
             xml.AppendChild(baseNode);
 
             xml.Save(configXmlString);
-        }
-
-        public void LoadDatabase()
-        {
-            //Check if a location exists.
-            while(DatabaseLocation == string.Empty || !Directory.Exists(DatabaseLocation))
-            {
-                Form2 setDatabaseLocationForm = new Form2();
-                setDatabaseLocationForm.ShowDialog();
-            }
-
-            //Check for profiles.
-            var xProfiles = new List<string>();
-
-            do
-            {
-                xProfiles = Directory.GetFiles(databaseLocation, "*.xprofile").ToList();
-
-                if (xProfiles.Count > 0)
-                {
-                    foreach (string xProfile in xProfiles)
-                    {
-                        ProfileCount++;
-                    }
-                }
-                else
-                {
-                    Form3 createFirstProfileForm = new Form3();
-                    createFirstProfileForm.ShowDialog();
-                }
-            }
-            while (xProfiles.Count == 0);
         }        
     }
 }

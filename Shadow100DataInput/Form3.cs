@@ -42,28 +42,12 @@ namespace Shadow100DataInput
                     //if we attempted to create one.
                     if (!File.Exists(sfd.FileName))
                     {
-                        CreateXProfile(sfd.FileName);
+                        var newProfile = new Profile(sfd.FileName);
+                        newProfile.Save();
                         Close();
                     }
                 }
             }
-        }
-
-        private void CreateXProfile(string fileLocation)
-        {
-            var fileName = Path.GetFileNameWithoutExtension(fileLocation);
-
-            var xml = new XmlDocument();
-            var baseNode = xml.CreateElement("Profile");
-            baseNode.SetAttribute("name", fileName);
-
-            var timeEntriesNode = xml.CreateElement("TimeEntries");
-
-            baseNode.AppendChild(timeEntriesNode);
-
-            xml.AppendChild(baseNode);
-
-            xml.Save(fileLocation);
         }
 
         private void button2_Click(object sender, EventArgs e)

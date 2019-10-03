@@ -15,16 +15,16 @@ namespace Shadow100DataInput.Classes
 
         public enum WeaponState
         {
-            NOT_AVAILABLE,
-            LEVEL1,
-            LEVEL2
+            Not_Available,            
+            Level2,
+            Level1,
         }
 
-        private WeaponState samuraiBlade = WeaponState.NOT_AVAILABLE;
-        private WeaponState satelliteLaser = WeaponState.NOT_AVAILABLE;
-        private WeaponState eggVacuum = WeaponState.NOT_AVAILABLE;
-        private WeaponState omochaoGun = WeaponState.NOT_AVAILABLE;
-        private WeaponState healCannon = WeaponState.NOT_AVAILABLE;
+        private WeaponState samuraiBlade = WeaponState.Not_Available;
+        private WeaponState satelliteLaser = WeaponState.Not_Available;
+        private WeaponState eggVacuum = WeaponState.Not_Available;
+        private WeaponState omochaoGun = WeaponState.Not_Available;
+        private WeaponState healCannon = WeaponState.Not_Available;
 
         public Level Level
         {
@@ -32,13 +32,29 @@ namespace Shadow100DataInput.Classes
             {
                 return level;
             }
+            set
+            {
+                level = value;
+            }
         }
 
-        public Mission.MissionType Mission
+        public int MissionIndex
         {
             get
             {
-                return Level.Missions[missionIndex].Type;
+                return missionIndex;
+            }
+            set
+            {
+                missionIndex = value;
+            }
+        }
+
+        public Level.MissionType Mission
+        {
+            get
+            {
+                return Level.Missions[missionIndex];
             }
         }
 
@@ -48,6 +64,10 @@ namespace Shadow100DataInput.Classes
             {
                 return level.Keys;
             }
+            set
+            {
+                level.Keys = value;
+            }
         }
 
         public WeaponState SamuraiBlade
@@ -56,12 +76,20 @@ namespace Shadow100DataInput.Classes
             {
                 return samuraiBlade;
             }
+            set
+            {
+                samuraiBlade = value;
+            }
         }
         public WeaponState SatelliteLaser
         {
             get
             {
                 return satelliteLaser;
+            }
+            set
+            {
+                satelliteLaser = value;
             }
         }
         public WeaponState EggVacuum
@@ -70,6 +98,10 @@ namespace Shadow100DataInput.Classes
             {
                 return eggVacuum;
             }
+            set
+            {
+                eggVacuum = value;
+            }
         }
         public WeaponState OmochaoGun
         {
@@ -77,12 +109,20 @@ namespace Shadow100DataInput.Classes
             {
                 return omochaoGun;
             }
+            set
+            {
+                omochaoGun = value;
+            }
         }
         public WeaponState HealCannon
         {
             get
             {
                 return healCannon;
+            }
+            set
+            {
+                healCannon = value;
             }
         }
 
@@ -92,6 +132,10 @@ namespace Shadow100DataInput.Classes
             {
                 return time;
             }
+            set
+            {
+                time = value;
+            }
         }
 
         public string VideoLink
@@ -99,6 +143,10 @@ namespace Shadow100DataInput.Classes
             get
             {
                 return videoLink;
+            }
+            set
+            {
+                videoLink = value;
             }
         }
     }

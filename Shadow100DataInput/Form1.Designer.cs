@@ -76,6 +76,7 @@
             this.levelComboBox.Size = new System.Drawing.Size(147, 24);
             this.levelComboBox.TabIndex = 0;
             this.levelComboBox.Text = "Glyphic Canyon";
+            this.levelComboBox.SelectedIndexChanged += new System.EventHandler(this.levelComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -159,54 +160,69 @@
             // 
             // healCannonCheckBox
             // 
+            this.healCannonCheckBox.AutoCheck = false;
             this.healCannonCheckBox.AutoSize = true;
             this.healCannonCheckBox.Location = new System.Drawing.Point(303, 120);
             this.healCannonCheckBox.Name = "healCannonCheckBox";
             this.healCannonCheckBox.Size = new System.Drawing.Size(49, 21);
             this.healCannonCheckBox.TabIndex = 13;
             this.healCannonCheckBox.Text = "HC";
+            this.healCannonCheckBox.ThreeState = true;
             this.healCannonCheckBox.UseVisualStyleBackColor = true;
+            this.healCannonCheckBox.Click += new System.EventHandler(this.healCannonCheckBox_Click);
             // 
             // omochaoGunCheckBox
             // 
+            this.omochaoGunCheckBox.AutoCheck = false;
             this.omochaoGunCheckBox.AutoSize = true;
             this.omochaoGunCheckBox.Location = new System.Drawing.Point(231, 120);
             this.omochaoGunCheckBox.Name = "omochaoGunCheckBox";
             this.omochaoGunCheckBox.Size = new System.Drawing.Size(60, 21);
             this.omochaoGunCheckBox.TabIndex = 12;
             this.omochaoGunCheckBox.Text = "Omo";
+            this.omochaoGunCheckBox.ThreeState = true;
             this.omochaoGunCheckBox.UseVisualStyleBackColor = true;
+            this.omochaoGunCheckBox.Click += new System.EventHandler(this.omochaoGunCheckBox_Click);
             // 
             // eggVacuumCheckBox
             // 
+            this.eggVacuumCheckBox.AutoCheck = false;
             this.eggVacuumCheckBox.AutoSize = true;
             this.eggVacuumCheckBox.Location = new System.Drawing.Point(159, 120);
             this.eggVacuumCheckBox.Name = "eggVacuumCheckBox";
             this.eggVacuumCheckBox.Size = new System.Drawing.Size(48, 21);
             this.eggVacuumCheckBox.TabIndex = 11;
             this.eggVacuumCheckBox.Text = "EV";
+            this.eggVacuumCheckBox.ThreeState = true;
             this.eggVacuumCheckBox.UseVisualStyleBackColor = true;
+            this.eggVacuumCheckBox.Click += new System.EventHandler(this.eggVacuumCheckBox_Click);
             // 
             // satelliteLaserCheckBox
             // 
+            this.satelliteLaserCheckBox.AutoCheck = false;
             this.satelliteLaserCheckBox.AutoSize = true;
             this.satelliteLaserCheckBox.Location = new System.Drawing.Point(87, 120);
             this.satelliteLaserCheckBox.Name = "satelliteLaserCheckBox";
             this.satelliteLaserCheckBox.Size = new System.Drawing.Size(47, 21);
             this.satelliteLaserCheckBox.TabIndex = 10;
             this.satelliteLaserCheckBox.Text = "SL";
+            this.satelliteLaserCheckBox.ThreeState = true;
             this.satelliteLaserCheckBox.UseVisualStyleBackColor = true;
+            this.satelliteLaserCheckBox.Click += new System.EventHandler(this.satelliteLaserCheckBox_Click);
             // 
             // samuraiBladeCheckBox
             // 
+            this.samuraiBladeCheckBox.AutoCheck = false;
             this.samuraiBladeCheckBox.AutoSize = true;
             this.samuraiBladeCheckBox.Location = new System.Drawing.Point(15, 120);
             this.samuraiBladeCheckBox.Name = "samuraiBladeCheckBox";
             this.samuraiBladeCheckBox.Size = new System.Drawing.Size(48, 21);
             this.samuraiBladeCheckBox.TabIndex = 9;
             this.samuraiBladeCheckBox.Text = "SB";
+            this.samuraiBladeCheckBox.ThreeState = true;
             this.toolTip1.SetToolTip(this.samuraiBladeCheckBox, "Samurai Blade");
             this.samuraiBladeCheckBox.UseVisualStyleBackColor = true;
+            this.samuraiBladeCheckBox.Click += new System.EventHandler(this.samuraiBladeCheckBox_Click);
             // 
             // label3
             // 
@@ -252,6 +268,7 @@
             this.submitSearchButton.TabIndex = 18;
             this.submitSearchButton.Text = "Submit";
             this.submitSearchButton.UseVisualStyleBackColor = true;
+            this.submitSearchButton.Click += new System.EventHandler(this.submitSearchButton_Click);
             // 
             // profileComboBox
             // 
@@ -296,14 +313,16 @@
             this.inputToolStripMenuItem.Checked = true;
             this.inputToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.inputToolStripMenuItem.Name = "inputToolStripMenuItem";
-            this.inputToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.inputToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.inputToolStripMenuItem.Text = "Input";
+            this.inputToolStripMenuItem.Click += new System.EventHandler(this.inputToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
