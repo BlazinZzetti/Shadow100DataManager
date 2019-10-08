@@ -1,6 +1,6 @@
 ﻿namespace Shadow100DataInput
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -64,6 +64,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allEndingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hundoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -292,10 +295,11 @@
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modeToolStripMenuItem,
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.reportsToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(382, 28);
+            this.menuStrip.Size = new System.Drawing.Size(463, 28);
             this.menuStrip.TabIndex = 21;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -313,14 +317,14 @@
             this.inputToolStripMenuItem.Checked = true;
             this.inputToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.inputToolStripMenuItem.Name = "inputToolStripMenuItem";
-            this.inputToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.inputToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.inputToolStripMenuItem.Text = "Input";
             this.inputToolStripMenuItem.Click += new System.EventHandler(this.inputToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
@@ -395,11 +399,32 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "Milli";
             // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allEndingsToolStripMenuItem,
+            this.hundoToolStripMenuItem});
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            // 
+            // allEndingsToolStripMenuItem
+            // 
+            this.allEndingsToolStripMenuItem.Name = "allEndingsToolStripMenuItem";
+            this.allEndingsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.allEndingsToolStripMenuItem.Text = "All Endings";
+            // 
+            // hundoToolStripMenuItem
+            // 
+            this.hundoToolStripMenuItem.Name = "hundoToolStripMenuItem";
+            this.hundoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.hundoToolStripMenuItem.Text = "100%";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 253);
+            this.ClientSize = new System.Drawing.Size(463, 253);
             this.Controls.Add(this.submitSearchButton);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -478,6 +503,9 @@
         private System.Windows.Forms.ToolStripMenuItem modeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allEndingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hundoToolStripMenuItem;
     }
 }
 

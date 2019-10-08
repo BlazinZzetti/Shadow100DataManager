@@ -13,16 +13,11 @@ using System.Xml;
 
 namespace Shadow100DataInput
 {
-    public partial class Form2 : Form
+    public partial class StartDatabaseSetForm : Form
     {
-        public Form2()
+        public StartDatabaseSetForm()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,8 +28,8 @@ namespace Shadow100DataInput
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    Config.Instance.DatabaseLocation = fbd.SelectedPath;
-                    Config.Instance.Save();
+                    Common.Instance.DatabaseLocation = fbd.SelectedPath;
+                    Common.Instance.Save();
                     Close();
                 }
             }

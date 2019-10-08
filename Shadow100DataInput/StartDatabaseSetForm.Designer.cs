@@ -1,6 +1,6 @@
 ﻿namespace Shadow100DataInput
 {
-    partial class Form3
+    partial class StartDatabaseSetForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,28 +37,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(89, 9);
+            this.label1.Location = new System.Drawing.Point(67, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 17);
+            this.label1.Size = new System.Drawing.Size(173, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "There are currently no profiles here.";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Text = "Database location not set or found.";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 69);
+            this.button1.Location = new System.Drawing.Point(10, 56);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 23);
+            this.button1.Size = new System.Drawing.Size(129, 19);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Create Profile";
+            this.button1.Text = "Set Database Location";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(191, 69);
+            this.button2.Location = new System.Drawing.Point(143, 56);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(171, 23);
+            this.button2.Size = new System.Drawing.Size(128, 19);
             this.button2.TabIndex = 2;
             this.button2.Text = "Cancel and Close";
             this.button2.UseVisualStyleBackColor = true;
@@ -67,23 +69,25 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(89, 26);
+            this.label2.Location = new System.Drawing.Point(67, 21);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 17);
+            this.label2.Size = new System.Drawing.Size(161, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Please create one.";
+            this.label2.Text = "Please set a Database Location.";
             // 
-            // Form3
+            // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 107);
+            this.ClientSize = new System.Drawing.Size(280, 87);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "Form3";
-            this.Text = "Form3";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "Form2";
+            this.Text = "Form2";
             this.ResumeLayout(false);
             this.PerformLayout();
 

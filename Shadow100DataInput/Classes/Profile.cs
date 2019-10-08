@@ -61,7 +61,7 @@ namespace Shadow100DataInput.Classes
                                 {
                                     if (j.Name == "Level")
                                     {
-                                        timeEntry.Level = new Level();//Need way of accessing all defined levels.
+                                        timeEntry.Level = new Level(Common.Instance.Levels.First(l => l.Name == j.InnerText));
                                     }
                                     if (j.Name == "Keys")
                                     {
@@ -183,6 +183,17 @@ namespace Shadow100DataInput.Classes
             xml.AppendChild(baseNode);
 
             xml.Save(fileLocation);
+        }
+
+        public TimeEntry FindTimeEntry(TimeEntry timeEntry)
+        {
+            return timeEntries.Find(te => te.Level.Equals(timeEntry.Level)
+                                       && te.MissionIndex == timeEntry.MissionIndex 
+                                       && te.SamuraiBlade == timeEntry.SamuraiBlade
+                                       && te.SatelliteLaser == timeEntry.SatelliteLaser
+                                       && te.EggVacuum == timeEntry.EggVacuum
+                                       && te.OmochaoGun == timeEntry.OmochaoGun
+                                       && te.HealCannon == timeEntry.HealCannon);
         }
 
         public override string ToString()

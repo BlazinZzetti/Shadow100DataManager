@@ -9,19 +9,21 @@ using System.Xml;
 
 namespace Shadow100DataInput.Classes
 {
-    class Config
+    class Common
     {
-        private static Config instance = null;
+        private static Common instance = null;
 
         private string configXmlString = "config.xml";
-
         private XmlDocument xml = new XmlDocument();
 
         private string databaseLocation;
         private int profileCount;
         private int profileIndex;
-        
-        private Config()
+
+        private List<Profile> profiles;
+        private List<Level> levels;
+
+        private Common()
         {
             xml = new XmlDocument();
 
@@ -30,13 +32,13 @@ namespace Shadow100DataInput.Classes
             profileIndex = 0;
         }
 
-        public static Config Instance
+        public static Common Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new Config();
+                    instance = new Common();
                 }
                 return instance;
             }
@@ -52,6 +54,32 @@ namespace Shadow100DataInput.Classes
             {
                 //TODO: add directory check here since this should only be a valid directory.
                 databaseLocation = value;
+            }
+        }
+
+        public List<Profile> Profiles
+        {
+            get
+            {
+                return profiles;
+            }
+
+            set
+            {
+                profiles = value;
+            }
+        }
+
+        public List<Level> Levels
+        {
+            get
+            {
+                return levels;
+            }
+
+            set
+            {
+                levels = value;
             }
         }
 

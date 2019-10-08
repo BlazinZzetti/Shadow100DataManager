@@ -13,7 +13,7 @@ using System.Xml;
 
 namespace Shadow100DataInput
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private enum UserMode
         {
@@ -23,52 +23,51 @@ namespace Shadow100DataInput
 
         private UserMode currentUserMode = UserMode.Input;
 
-        private List<Profile> profiles;
-        private List<Level> levels;
+        Common common = Common.Instance;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadDatabase();
             InitalizeLevelData();
+            LoadDatabase();            
             InitializeUI();
         }
 
         public void LoadDatabase()
         {
-            Config.Instance.LoadConfigFile();
+            Common.Instance.LoadConfigFile();
             //Check if a location exists.
-            while (Config.Instance.DatabaseLocation == string.Empty || !Directory.Exists(Config.Instance.DatabaseLocation))
+            while (common.DatabaseLocation == string.Empty || !Directory.Exists(common.DatabaseLocation))
             {
-                Form2 setDatabaseLocationForm = new Form2();
+                StartDatabaseSetForm setDatabaseLocationForm = new StartDatabaseSetForm();
                 setDatabaseLocationForm.ShowDialog();
             }
 
             //Check for profiles.
-            profiles = new List<Profile>();
+            common.Profiles = new List<Profile>();
             var xProfileFiles = new List<string>();
 
             do
             {
-                xProfileFiles = Directory.GetFiles(Config.Instance.DatabaseLocation, "*.xprofile").ToList();
+                xProfileFiles = Directory.GetFiles(Common.Instance.DatabaseLocation, "*.xprofile").ToList();
 
                 //Do we have any profiles.
                 if (xProfileFiles.Count > 0)
                 {
                     foreach (string xProfileFile in xProfileFiles)
                     {
-                        profiles.Add(new Profile(xProfileFile));
+                        common.Profiles.Add(new Profile(xProfileFile));
                     }
 
-                    Config.Instance.ProfileCount = profiles.Count();
+                    common.ProfileCount = common.Profiles.Count();
                 }
                 else
                 {
-                    Form3 createFirstProfileForm = new Form3();
+                    StartupProfileCreationForm createFirstProfileForm = new StartupProfileCreationForm();
                     createFirstProfileForm.ShowDialog();
                 }
             }
@@ -77,141 +76,141 @@ namespace Shadow100DataInput
 
         private void InitalizeLevelData()
         {
-            levels = new List<Level>();
+            common.Levels = new List<Level>();
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Westopolis",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Digital Curcuit",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Glyphic Canyon",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Lethal Highway",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Cryptic Castle",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Prison Island",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Circus Park",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Central City",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "The Doom",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Sky Troops",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Mad Matrix",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Death Ruins",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "The ARK",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Air Fleet",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Iron Jungle",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Space Gadget",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Lost Impact",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Normal, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "GUN Fortress",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Black Comet",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Lava Shelter",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Cosmic Fall",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "Final Haunt",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
-            levels.Add(new Level()
+            common.Levels.Add(new Level()
             {
                 Name = "The Last Way",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Normal }
@@ -235,15 +234,15 @@ namespace Shadow100DataInput
             healCannonCheckBox.Checked = false;
 
             profileComboBox.DataSource = null;
-            profileComboBox.DataSource = profiles;
+            profileComboBox.DataSource = common.Profiles;
 
             levelComboBox.DataSource = null;
-            levelComboBox.DataSource = levels;
+            levelComboBox.DataSource = common.Levels;
             levelComboBox.SelectedIndex = 0;
 
             //Make the assumption that Westopolis has already been created.
             missionComboBox.DataSource = null;
-            missionComboBox.DataSource = levels[0].Missions;
+            missionComboBox.DataSource = common.Levels[0].Missions;
             missionComboBox.SelectedIndex = 0;
         }
 
@@ -310,7 +309,7 @@ namespace Shadow100DataInput
         private void levelComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             missionComboBox.DataSource = null;
-            missionComboBox.DataSource = levels[((ComboBox)sender).SelectedIndex].Missions;
+            missionComboBox.DataSource = common.Levels[((ComboBox)sender).SelectedIndex].Missions;
             missionComboBox.SelectedIndex = 0;
         }
 
@@ -374,7 +373,7 @@ namespace Shadow100DataInput
         {
             var timeEntry = new TimeEntry();
 
-            timeEntry.Level = levels[levelComboBox.SelectedIndex];
+            timeEntry.Level = common.Levels[levelComboBox.SelectedIndex];
             timeEntry.MissionIndex = missionComboBox.SelectedIndex;
             timeEntry.Keys = new bool[] { keyCheckBox1.Checked,
                                           keyCheckBox2.Checked,
@@ -397,8 +396,28 @@ namespace Shadow100DataInput
             //If so, update the existing time without adding a new entry.
             //If not, reject entry with a message box explaining why.
 
-            profiles[profileComboBox.SelectedIndex].TimeEntries.Add(timeEntry);
-            profiles[profileComboBox.SelectedIndex].Save();
+            var profileMatch = common.Profiles[profileComboBox.SelectedIndex].FindTimeEntry(timeEntry);
+
+            if (profileMatch != null )
+            {
+                if (profileMatch.Time > timeEntry.Time)
+                {
+                    profileMatch.Time = timeEntry.Time;
+                    profileMatch.VideoLink = timeEntry.VideoLink;
+                    common.Profiles[profileComboBox.SelectedIndex].Save();
+                    MessageBox.Show("Time Updated");
+                }
+                else
+                {
+                    MessageBox.Show("Time not updated.");
+                }
+            }
+            else
+            {
+                common.Profiles[profileComboBox.SelectedIndex].TimeEntries.Add(timeEntry);
+                common.Profiles[profileComboBox.SelectedIndex].Save();
+                MessageBox.Show("Time Added.");
+            }
         }
 
         private uint TimeInMilliseconds(int minutes, int seconds, int milliseconds)

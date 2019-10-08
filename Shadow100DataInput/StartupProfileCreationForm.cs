@@ -13,23 +13,18 @@ using System.Xml;
 
 namespace Shadow100DataInput
 {
-    public partial class Form3 : Form
+    public partial class StartupProfileCreationForm : Form
     {
-        public Form3()
+        public StartupProfileCreationForm()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.InitialDirectory = Config.Instance.DatabaseLocation;
+                sfd.InitialDirectory = Common.Instance.DatabaseLocation;
                 sfd.AddExtension = true;
                 sfd.DefaultExt = "xprofile";
                 sfd.Filter = "xprofile (*.xprofile)|*.xprofile";
@@ -53,11 +48,6 @@ namespace Shadow100DataInput
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
         }
     }
 }

@@ -57,12 +57,31 @@ namespace Shadow100DataInput.Classes
 
         public Level()
         {
+
         }
 
         public Level(string name, List<MissionType> missions)
         {
             this.name = name;
             this.missions = missions;
+        }
+
+        public Level(Level level)
+        {
+            name = level.name;
+            missions = level.missions;
+            Array.Copy(level.keys, keys, 5);
+        }
+
+        public bool Equals(Level level)
+        {
+            return this.name == level.name
+                && this.missions == level.missions
+                && this.keys[0] == level.keys[0]
+                && this.keys[1] == level.keys[1]
+                && this.keys[2] == level.keys[2]
+                && this.keys[3] == level.keys[3]
+                && this.keys[4] == level.keys[4];
         }
 
         public override string ToString()
