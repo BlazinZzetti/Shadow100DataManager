@@ -18,6 +18,8 @@ namespace Shadow100DataInput.Classes
         private string name;
         private List<MissionType> missions;
         private bool[] keys = new bool[5];
+        private bool usesKeyDoor;
+        private bool noCCG;
 
         public string Name
         {
@@ -55,6 +57,30 @@ namespace Shadow100DataInput.Classes
             }
         }
 
+        public bool UsesKeyDoor
+        {
+            get
+            {
+                return usesKeyDoor;
+            }
+            set
+            {
+                usesKeyDoor = value;
+            }
+        }
+
+        public bool NoCCG
+        {
+            get
+            {
+                return noCCG;
+            }
+            set
+            {
+                noCCG = value;
+            }
+        }
+
         public Level()
         {
 
@@ -71,6 +97,8 @@ namespace Shadow100DataInput.Classes
             name = level.name;
             missions = level.missions;
             Array.Copy(level.keys, keys, 5);
+            usesKeyDoor = level.usesKeyDoor;
+            noCCG = level.noCCG;
         }
 
         public bool Equals(Level level)
@@ -81,7 +109,9 @@ namespace Shadow100DataInput.Classes
                 && this.keys[1] == level.keys[1]
                 && this.keys[2] == level.keys[2]
                 && this.keys[3] == level.keys[3]
-                && this.keys[4] == level.keys[4];
+                && this.keys[4] == level.keys[4]
+                && this.usesKeyDoor == level.usesKeyDoor
+                && this.noCCG == level.noCCG;
         }
 
         public override string ToString()

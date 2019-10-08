@@ -22,27 +22,8 @@ namespace Shadow100DataInput
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog())
-            {
-                sfd.InitialDirectory = Common.Instance.DatabaseLocation;
-                sfd.AddExtension = true;
-                sfd.DefaultExt = "xprofile";
-                sfd.Filter = "xprofile (*.xprofile)|*.xprofile";
-
-                var result = sfd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(sfd.FileName))
-                {                    
-                    //Double Check in case the file creation failed 
-                    //if we attempted to create one.
-                    if (!File.Exists(sfd.FileName))
-                    {
-                        var newProfile = new Profile(sfd.FileName);
-                        newProfile.Save();
-                        Close();
-                    }
-                }
-            }
+            Common.Instance.CreateNewProfile();
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

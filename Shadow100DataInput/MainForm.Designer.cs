@@ -45,9 +45,6 @@
             this.samuraiBladeCheckBox = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label3 = new System.Windows.Forms.Label();
-            this.timeMinutesTextBox = new System.Windows.Forms.TextBox();
-            this.timeSecondsTextBox = new System.Windows.Forms.TextBox();
-            this.timeMillisecondsTextBox = new System.Windows.Forms.TextBox();
             this.submitSearchButton = new System.Windows.Forms.Button();
             this.profileComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,15 +56,23 @@
             this.createProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDatabaseFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allEndingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hundoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.videoLinkTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allEndingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hundoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noCCGCheckBox = new System.Windows.Forms.CheckBox();
+            this.usesKeyDoorCheckBox = new System.Windows.Forms.CheckBox();
+            this.minutesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.secondsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.centiNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minutesNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secondsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.centiNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // levelComboBox
@@ -165,11 +170,11 @@
             // 
             this.healCannonCheckBox.AutoCheck = false;
             this.healCannonCheckBox.AutoSize = true;
-            this.healCannonCheckBox.Location = new System.Drawing.Point(303, 120);
+            this.healCannonCheckBox.Location = new System.Drawing.Point(390, 120);
             this.healCannonCheckBox.Name = "healCannonCheckBox";
-            this.healCannonCheckBox.Size = new System.Drawing.Size(49, 21);
+            this.healCannonCheckBox.Size = new System.Drawing.Size(112, 21);
             this.healCannonCheckBox.TabIndex = 13;
-            this.healCannonCheckBox.Text = "HC";
+            this.healCannonCheckBox.Text = "Heal Cannon";
             this.healCannonCheckBox.ThreeState = true;
             this.healCannonCheckBox.UseVisualStyleBackColor = true;
             this.healCannonCheckBox.Click += new System.EventHandler(this.healCannonCheckBox_Click);
@@ -178,11 +183,11 @@
             // 
             this.omochaoGunCheckBox.AutoCheck = false;
             this.omochaoGunCheckBox.AutoSize = true;
-            this.omochaoGunCheckBox.Location = new System.Drawing.Point(231, 120);
+            this.omochaoGunCheckBox.Location = new System.Drawing.Point(262, 120);
             this.omochaoGunCheckBox.Name = "omochaoGunCheckBox";
-            this.omochaoGunCheckBox.Size = new System.Drawing.Size(60, 21);
+            this.omochaoGunCheckBox.Size = new System.Drawing.Size(122, 21);
             this.omochaoGunCheckBox.TabIndex = 12;
-            this.omochaoGunCheckBox.Text = "Omo";
+            this.omochaoGunCheckBox.Text = "Omochao Gun";
             this.omochaoGunCheckBox.ThreeState = true;
             this.omochaoGunCheckBox.UseVisualStyleBackColor = true;
             this.omochaoGunCheckBox.Click += new System.EventHandler(this.omochaoGunCheckBox_Click);
@@ -191,11 +196,11 @@
             // 
             this.eggVacuumCheckBox.AutoCheck = false;
             this.eggVacuumCheckBox.AutoSize = true;
-            this.eggVacuumCheckBox.Location = new System.Drawing.Point(159, 120);
+            this.eggVacuumCheckBox.Location = new System.Drawing.Point(146, 120);
             this.eggVacuumCheckBox.Name = "eggVacuumCheckBox";
-            this.eggVacuumCheckBox.Size = new System.Drawing.Size(48, 21);
+            this.eggVacuumCheckBox.Size = new System.Drawing.Size(110, 21);
             this.eggVacuumCheckBox.TabIndex = 11;
-            this.eggVacuumCheckBox.Text = "EV";
+            this.eggVacuumCheckBox.Text = "Egg Vacuum";
             this.eggVacuumCheckBox.ThreeState = true;
             this.eggVacuumCheckBox.UseVisualStyleBackColor = true;
             this.eggVacuumCheckBox.Click += new System.EventHandler(this.eggVacuumCheckBox_Click);
@@ -210,6 +215,7 @@
             this.satelliteLaserCheckBox.TabIndex = 10;
             this.satelliteLaserCheckBox.Text = "SL";
             this.satelliteLaserCheckBox.ThreeState = true;
+            this.toolTip1.SetToolTip(this.satelliteLaserCheckBox, "Satellite Laser");
             this.satelliteLaserCheckBox.UseVisualStyleBackColor = true;
             this.satelliteLaserCheckBox.Click += new System.EventHandler(this.satelliteLaserCheckBox_Click);
             // 
@@ -236,38 +242,11 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "RTA Time";
             // 
-            // timeMinutesTextBox
-            // 
-            this.timeMinutesTextBox.Location = new System.Drawing.Point(87, 147);
-            this.timeMinutesTextBox.Name = "timeMinutesTextBox";
-            this.timeMinutesTextBox.Size = new System.Drawing.Size(48, 22);
-            this.timeMinutesTextBox.TabIndex = 15;
-            this.timeMinutesTextBox.Text = "99";
-            this.timeMinutesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // timeSecondsTextBox
-            // 
-            this.timeSecondsTextBox.Location = new System.Drawing.Point(177, 147);
-            this.timeSecondsTextBox.Name = "timeSecondsTextBox";
-            this.timeSecondsTextBox.Size = new System.Drawing.Size(46, 22);
-            this.timeSecondsTextBox.TabIndex = 16;
-            this.timeSecondsTextBox.Text = "99";
-            this.timeSecondsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // timeMillisecondsTextBox
-            // 
-            this.timeMillisecondsTextBox.Location = new System.Drawing.Point(267, 147);
-            this.timeMillisecondsTextBox.Name = "timeMillisecondsTextBox";
-            this.timeMillisecondsTextBox.Size = new System.Drawing.Size(46, 22);
-            this.timeMillisecondsTextBox.TabIndex = 17;
-            this.timeMillisecondsTextBox.Text = "99";
-            this.timeMillisecondsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // submitSearchButton
             // 
             this.submitSearchButton.Location = new System.Drawing.Point(15, 205);
             this.submitSearchButton.Name = "submitSearchButton";
-            this.submitSearchButton.Size = new System.Drawing.Size(355, 36);
+            this.submitSearchButton.Size = new System.Drawing.Size(487, 36);
             this.submitSearchButton.TabIndex = 18;
             this.submitSearchButton.Text = "Submit";
             this.submitSearchButton.UseVisualStyleBackColor = true;
@@ -278,8 +257,9 @@
             this.profileComboBox.FormattingEnabled = true;
             this.profileComboBox.Location = new System.Drawing.Point(75, 31);
             this.profileComboBox.Name = "profileComboBox";
-            this.profileComboBox.Size = new System.Drawing.Size(295, 24);
+            this.profileComboBox.Size = new System.Drawing.Size(427, 24);
             this.profileComboBox.TabIndex = 19;
+            this.profileComboBox.SelectedIndexChanged += new System.EventHandler(this.profileComboBox_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -299,7 +279,7 @@
             this.reportsToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(463, 28);
+            this.menuStrip.Size = new System.Drawing.Size(512, 28);
             this.menuStrip.TabIndex = 21;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -343,67 +323,28 @@
             this.createProfileToolStripMenuItem.Name = "createProfileToolStripMenuItem";
             this.createProfileToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.createProfileToolStripMenuItem.Text = "Create Profile";
+            this.createProfileToolStripMenuItem.Click += new System.EventHandler(this.createProfileToolStripMenuItem_Click);
             // 
             // setDatabaseFolderToolStripMenuItem
             // 
             this.setDatabaseFolderToolStripMenuItem.Name = "setDatabaseFolderToolStripMenuItem";
             this.setDatabaseFolderToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.setDatabaseFolderToolStripMenuItem.Text = "Set Database Folder";
+            this.setDatabaseFolderToolStripMenuItem.Click += new System.EventHandler(this.setDatabaseFolderToolStripMenuItem_Click);
             // 
             // refreshDatabaseToolStripMenuItem
             // 
+            this.refreshDatabaseToolStripMenuItem.Enabled = false;
             this.refreshDatabaseToolStripMenuItem.Name = "refreshDatabaseToolStripMenuItem";
             this.refreshDatabaseToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.refreshDatabaseToolStripMenuItem.Text = "Merge Profiles";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 178);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 17);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Video Link";
-            // 
-            // videoLinkTextBox
-            // 
-            this.videoLinkTextBox.Location = new System.Drawing.Point(89, 175);
-            this.videoLinkTextBox.Name = "videoLinkTextBox";
-            this.videoLinkTextBox.Size = new System.Drawing.Size(281, 22);
-            this.videoLinkTextBox.TabIndex = 23;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(141, 150);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 17);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Min";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(229, 150);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 17);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Sec";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(319, 150);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 17);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Milli";
             // 
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allEndingsToolStripMenuItem,
             this.hundoToolStripMenuItem});
+            this.reportsToolStripMenuItem.Enabled = false;
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.reportsToolStripMenuItem.Text = "Reports";
@@ -420,11 +361,125 @@
             this.hundoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.hundoToolStripMenuItem.Text = "100%";
             // 
-            // Form1
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 178);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 17);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Video Link";
+            // 
+            // videoLinkTextBox
+            // 
+            this.videoLinkTextBox.Location = new System.Drawing.Point(89, 175);
+            this.videoLinkTextBox.Name = "videoLinkTextBox";
+            this.videoLinkTextBox.Size = new System.Drawing.Size(413, 22);
+            this.videoLinkTextBox.TabIndex = 23;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(145, 150);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 17);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Minutes";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(264, 150);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 17);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Seconds";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(389, 150);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 17);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Centiseconds";
+            // 
+            // noCCGCheckBox
+            // 
+            this.noCCGCheckBox.AutoSize = true;
+            this.noCCGCheckBox.Location = new System.Drawing.Point(376, 64);
+            this.noCCGCheckBox.Name = "noCCGCheckBox";
+            this.noCCGCheckBox.Size = new System.Drawing.Size(89, 21);
+            this.noCCGCheckBox.TabIndex = 27;
+            this.noCCGCheckBox.Text = "No CCG?";
+            this.noCCGCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // usesKeyDoorCheckBox
+            // 
+            this.usesKeyDoorCheckBox.AutoSize = true;
+            this.usesKeyDoorCheckBox.Location = new System.Drawing.Point(376, 93);
+            this.usesKeyDoorCheckBox.Name = "usesKeyDoorCheckBox";
+            this.usesKeyDoorCheckBox.Size = new System.Drawing.Size(126, 21);
+            this.usesKeyDoorCheckBox.TabIndex = 28;
+            this.usesKeyDoorCheckBox.Text = "Use Key Door?";
+            this.usesKeyDoorCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // minutesNumericUpDown
+            // 
+            this.minutesNumericUpDown.Location = new System.Drawing.Point(89, 147);
+            this.minutesNumericUpDown.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.minutesNumericUpDown.Name = "minutesNumericUpDown";
+            this.minutesNumericUpDown.Size = new System.Drawing.Size(50, 22);
+            this.minutesNumericUpDown.TabIndex = 29;
+            this.minutesNumericUpDown.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // secondsNumericUpDown
+            // 
+            this.secondsNumericUpDown.Location = new System.Drawing.Point(208, 147);
+            this.secondsNumericUpDown.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.secondsNumericUpDown.Name = "secondsNumericUpDown";
+            this.secondsNumericUpDown.Size = new System.Drawing.Size(50, 22);
+            this.secondsNumericUpDown.TabIndex = 30;
+            this.secondsNumericUpDown.Value = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            // 
+            // centiNumericUpDown
+            // 
+            this.centiNumericUpDown.Location = new System.Drawing.Point(333, 147);
+            this.centiNumericUpDown.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.centiNumericUpDown.Name = "centiNumericUpDown";
+            this.centiNumericUpDown.Size = new System.Drawing.Size(50, 22);
+            this.centiNumericUpDown.TabIndex = 31;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 253);
+            this.ClientSize = new System.Drawing.Size(512, 253);
+            this.Controls.Add(this.centiNumericUpDown);
+            this.Controls.Add(this.secondsNumericUpDown);
+            this.Controls.Add(this.minutesNumericUpDown);
+            this.Controls.Add(this.usesKeyDoorCheckBox);
+            this.Controls.Add(this.noCCGCheckBox);
             this.Controls.Add(this.submitSearchButton);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -433,9 +488,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.profileComboBox);
-            this.Controls.Add(this.timeMillisecondsTextBox);
-            this.Controls.Add(this.timeSecondsTextBox);
-            this.Controls.Add(this.timeMinutesTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.healCannonCheckBox);
             this.Controls.Add(this.omochaoGunCheckBox);
@@ -456,11 +508,14 @@
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Shadow 100% Data Input";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "MainForm";
+            this.Text = "Shadow 100% Data Manager";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minutesNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secondsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.centiNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,9 +539,6 @@
         private System.Windows.Forms.CheckBox samuraiBladeCheckBox;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox timeMinutesTextBox;
-        private System.Windows.Forms.TextBox timeSecondsTextBox;
-        private System.Windows.Forms.TextBox timeMillisecondsTextBox;
         private System.Windows.Forms.Button submitSearchButton;
         private System.Windows.Forms.ComboBox profileComboBox;
         private System.Windows.Forms.Label label4;
@@ -506,6 +558,11 @@
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEndingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hundoToolStripMenuItem;
+        private System.Windows.Forms.CheckBox noCCGCheckBox;
+        private System.Windows.Forms.CheckBox usesKeyDoorCheckBox;
+        private System.Windows.Forms.NumericUpDown minutesNumericUpDown;
+        private System.Windows.Forms.NumericUpDown secondsNumericUpDown;
+        private System.Windows.Forms.NumericUpDown centiNumericUpDown;
     }
 }
 

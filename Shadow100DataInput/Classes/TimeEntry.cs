@@ -70,6 +70,30 @@ namespace Shadow100DataInput.Classes
             }
         }
 
+        public bool UsesKeyDoor
+        {
+            get
+            {
+                return level.UsesKeyDoor;
+            }
+            set
+            {
+                level.UsesKeyDoor = value;
+            }
+        }
+
+        public bool NoCCG
+        {
+            get
+            {
+                return level.NoCCG;
+            }
+            set
+            {
+                level.NoCCG = value;
+            }
+        }
+
         public WeaponState SamuraiBlade
         {
             get

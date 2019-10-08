@@ -24,16 +24,23 @@ namespace Shadow100DataInput
         private UserMode currentUserMode = UserMode.Input;
 
         Common common = Common.Instance;
+        private bool afterFirstLoad;
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            RefreshForm();
+            afterFirstLoad = true;
+        }
+
+        private void RefreshForm()
         {
             InitalizeLevelData();
-            LoadDatabase();            
+            LoadDatabase();
             InitializeUI();
         }
 
@@ -53,7 +60,7 @@ namespace Shadow100DataInput
 
             do
             {
-                xProfileFiles = Directory.GetFiles(Common.Instance.DatabaseLocation, "*.xprofile").ToList();
+                xProfileFiles = Directory.GetFiles(Common.Instance.DatabaseLocation, "*.xshadowprofile").ToList();
 
                 //Do we have any profiles.
                 if (xProfileFiles.Count > 0)
@@ -68,7 +75,11 @@ namespace Shadow100DataInput
                 else
                 {
                     StartupProfileCreationForm createFirstProfileForm = new StartupProfileCreationForm();
-                    createFirstProfileForm.ShowDialog();
+                    var result = createFirstProfileForm.ShowDialog();
+                    //if(result == DialogResult.Cancel)
+                    //{
+                    //    Close();
+                    //}
                 }
             }
             while (xProfileFiles.Count == 0);
@@ -235,6 +246,7 @@ namespace Shadow100DataInput
 
             profileComboBox.DataSource = null;
             profileComboBox.DataSource = common.Profiles;
+            profileComboBox.SelectedIndex = common.ProfileIndex;
 
             levelComboBox.DataSource = null;
             levelComboBox.DataSource = common.Levels;
@@ -261,9 +273,9 @@ namespace Shadow100DataInput
                     submitSearchButton.Text = "Submit";
                     TimeVideoReadOnlyState(false);
 
-                    timeMinutesTextBox.Text = "0";
-                    timeSecondsTextBox.Text = "0";
-                    timeMillisecondsTextBox.Text = "0";
+                    minutesNumericUpDown.Value = 0;
+                    secondsNumericUpDown.Value = 0;
+                    centiNumericUpDown.Value = 0;
                     videoLinkTextBox.Text = "";
 
                     break;
@@ -271,9 +283,9 @@ namespace Shadow100DataInput
                     submitSearchButton.Text = "Search";
                     TimeVideoReadOnlyState(true);
 
-                    timeMinutesTextBox.Text = "";
-                    timeSecondsTextBox.Text = "";
-                    timeMillisecondsTextBox.Text = "";
+                    minutesNumericUpDown.Value = 0;
+                    secondsNumericUpDown.Value = 0;
+                    centiNumericUpDown.Value = 0;
                     videoLinkTextBox.Text = "";
 
                     break;
@@ -282,9 +294,15 @@ namespace Shadow100DataInput
 
         private void TimeVideoReadOnlyState(bool readOnly)
         {
-            timeMinutesTextBox.ReadOnly = readOnly;
-            timeSecondsTextBox.ReadOnly = readOnly;
-            timeMillisecondsTextBox.ReadOnly = readOnly;
+            minutesNumericUpDown.ReadOnly = readOnly;
+            minutesNumericUpDown.Increment = (readOnly) ? 0 : 1;
+
+            secondsNumericUpDown.ReadOnly = readOnly;
+            secondsNumericUpDown.Increment = (readOnly) ? 0 : 1;
+
+            centiNumericUpDown.ReadOnly = readOnly;
+            centiNumericUpDown.Increment = (readOnly) ? 0 : 1;
+
             videoLinkTextBox.ReadOnly = readOnly;
         }
 
@@ -309,7 +327,7 @@ namespace Shadow100DataInput
         private void levelComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             missionComboBox.DataSource = null;
-            missionComboBox.DataSource = common.Levels[((ComboBox)sender).SelectedIndex].Missions;
+            missionComboBox.DataSource = common.Levels[Math.Max(((ComboBox)sender).SelectedIndex, 0)].Missions;
             missionComboBox.SelectedIndex = 0;
         }
 
@@ -369,7 +387,7 @@ namespace Shadow100DataInput
             }
         }
 
-        private void InputButtonPressed()
+        private TimeEntry TimeEntryFromFormSettings(UserMode userMode)
         {
             var timeEntry = new TimeEntry();
 
@@ -381,59 +399,111 @@ namespace Shadow100DataInput
                                           keyCheckBox4.Checked,
                                           keyCheckBox5.Checked };
 
+            timeEntry.UsesKeyDoor = usesKeyDoorCheckBox.Checked;
+            timeEntry.NoCCG = noCCGCheckBox.Checked;
+
             timeEntry.SamuraiBlade = (TimeEntry.WeaponState)samuraiBladeCheckBox.CheckState;
             timeEntry.SatelliteLaser = (TimeEntry.WeaponState)satelliteLaserCheckBox.CheckState;
             timeEntry.EggVacuum = (TimeEntry.WeaponState)eggVacuumCheckBox.CheckState;
             timeEntry.OmochaoGun = (TimeEntry.WeaponState)omochaoGunCheckBox.CheckState;
             timeEntry.HealCannon = (TimeEntry.WeaponState)healCannonCheckBox.CheckState;
 
-            timeEntry.Time = TimeInMilliseconds(Int32.Parse(timeMinutesTextBox.Text), Int32.Parse(timeSecondsTextBox.Text), Int32.Parse(timeMillisecondsTextBox.Text) * 10);
-
-            timeEntry.VideoLink = videoLinkTextBox.Text;
-
-            //TODO: Check to see if an time entry already exists for these settings.
-            //If so, check to see if the time you have entered is better.
-            //If so, update the existing time without adding a new entry.
-            //If not, reject entry with a message box explaining why.
-
-            var profileMatch = common.Profiles[profileComboBox.SelectedIndex].FindTimeEntry(timeEntry);
-
-            if (profileMatch != null )
+            if (userMode == UserMode.Input)
             {
-                if (profileMatch.Time > timeEntry.Time)
+                timeEntry.Time = common.TimeInMilliseconds((int)minutesNumericUpDown.Value, (int)secondsNumericUpDown.Value, (int)(centiNumericUpDown.Value * 10));
+
+                timeEntry.VideoLink = videoLinkTextBox.Text;
+            }
+
+            return timeEntry;
+        }
+
+        private void InputButtonPressed()
+        {
+            var timeEntry = TimeEntryFromFormSettings(UserMode.Input);
+
+            if (timeEntry.Time > 0)
+            {
+
+                var profileMatch = common.Profiles[profileComboBox.SelectedIndex].FindTimeEntry(timeEntry);
+
+                if (profileMatch != null)
                 {
-                    profileMatch.Time = timeEntry.Time;
-                    profileMatch.VideoLink = timeEntry.VideoLink;
-                    common.Profiles[profileComboBox.SelectedIndex].Save();
-                    MessageBox.Show("Time Updated");
+                    if (profileMatch.Time > timeEntry.Time)
+                    {
+                        var confirmTime = new ConfirmUpdateForm(profileMatch.Time, timeEntry.Time);
+                        var result = confirmTime.ShowDialog();
+
+                        if (result == DialogResult.OK)
+                        {
+                            profileMatch.Time = timeEntry.Time;
+                            profileMatch.VideoLink = timeEntry.VideoLink;
+                            common.Profiles[profileComboBox.SelectedIndex].Save();
+                            MessageBox.Show("Time Updated");
+                        }
+                        if (result == DialogResult.Cancel)
+                        {
+                            MessageBox.Show("Time not updated.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Better time exists.\n" + common.TimeInString(profileMatch.Time) + "\nTime not updated.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Time not updated.");
+                    common.Profiles[profileComboBox.SelectedIndex].TimeEntries.Add(timeEntry);
+                    common.Profiles[profileComboBox.SelectedIndex].Save();
+                    MessageBox.Show("Time Added.");
                 }
             }
             else
             {
-                common.Profiles[profileComboBox.SelectedIndex].TimeEntries.Add(timeEntry);
-                common.Profiles[profileComboBox.SelectedIndex].Save();
-                MessageBox.Show("Time Added.");
+                MessageBox.Show("Please enter a time greater than 0.");
             }
-        }
-
-        private uint TimeInMilliseconds(int minutes, int seconds, int milliseconds)
-        {
-            uint returnMilliseconds = 0;
-
-            returnMilliseconds += (uint)minutes * 60000;
-            returnMilliseconds += (uint)seconds * 1000;
-            returnMilliseconds += (uint)milliseconds;
-
-            return returnMilliseconds;
         }
 
         private void SearchButtonPressed()
         {
-            throw new NotImplementedException();
+            var timeEntry = TimeEntryFromFormSettings(UserMode.Search);
+
+            var profileMatch = common.Profiles[profileComboBox.SelectedIndex].FindTimeEntry(timeEntry);
+
+            if (profileMatch != null)
+            {
+                var timeInSegments = common.TimeInSegments(profileMatch.Time);
+                minutesNumericUpDown.Value = timeInSegments[0];
+                secondsNumericUpDown.Value = timeInSegments[1];
+                centiNumericUpDown.Value = (timeInSegments[2] / 10);
+
+                videoLinkTextBox.Text = profileMatch.VideoLink;
+            }
+            else
+            {
+                MessageBox.Show("Time not found for these settings.");
+            }
+        }
+
+        private void setDatabaseFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            common.SetDatabaseFolderLocation();
+            RefreshForm();
+        }
+
+        private void createProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            common.CreateNewProfile();
+            RefreshForm();
+        }
+
+        private void profileComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (afterFirstLoad)
+            {
+                common.ProfileIndex = ((ComboBox)sender).SelectedIndex;
+                common.Save();
+            }
         }
     }
 }

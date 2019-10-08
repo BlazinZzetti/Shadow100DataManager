@@ -22,17 +22,8 @@ namespace Shadow100DataInput
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                var result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    Common.Instance.DatabaseLocation = fbd.SelectedPath;
-                    Common.Instance.Save();
-                    Close();
-                }
-            }
+            Common.Instance.SetDatabaseFolderLocation();
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

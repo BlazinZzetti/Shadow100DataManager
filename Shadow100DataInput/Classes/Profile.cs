@@ -74,6 +74,14 @@ namespace Shadow100DataInput.Classes
                                     {
                                         timeEntry.MissionIndex = int.Parse(j.InnerText);
                                     }
+                                    if (j.Name == "UsesKeyDoor")
+                                    {
+                                        timeEntry.UsesKeyDoor = Boolean.Parse(j.InnerText);
+                                    }
+                                    if (j.Name == "NoCCG")
+                                    {
+                                        timeEntry.NoCCG = Boolean.Parse(j.InnerText);
+                                    }
                                     if (j.Name == "WeaponStates")
                                     {
                                         timeEntry.SamuraiBlade = (TimeEntry.WeaponState)int.Parse(j.ChildNodes[0].InnerText);
@@ -104,6 +112,13 @@ namespace Shadow100DataInput.Classes
             }
         }
 
+        public Profile(string name, string filePath)
+        {
+            profileName = name;
+            fileLocation = filePath;
+            timeEntries = new List<TimeEntry>();
+        }
+
         public void Save()
         {
             var xml = new XmlDocument();
@@ -124,6 +139,8 @@ namespace Shadow100DataInput.Classes
                 var key4Node = xml.CreateElement("Key4");
                 var key5Node = xml.CreateElement("Key5");
                 var missionIndexNode = xml.CreateElement("MissionIndex");
+                var usesKeyDoorNode = xml.CreateElement("UsesKeyDoor");
+                var noCCGNode = xml.CreateElement("NoCCG");
                 var weaponStatesNode = xml.CreateElement("WeaponStates");
                 var samuraiBladeNode = xml.CreateElement("SamuraiBlade");
                 var satelliteLaserNode = xml.CreateElement("SatelliteLaser");
@@ -142,6 +159,9 @@ namespace Shadow100DataInput.Classes
                 key5Node.InnerText = timeEntry.Keys[4].ToString();
 
                 missionIndexNode.InnerText = timeEntry.MissionIndex.ToString();
+
+                usesKeyDoorNode.InnerText = timeEntry.UsesKeyDoor.ToString();
+                noCCGNode.InnerText = timeEntry.NoCCG.ToString();
 
                 samuraiBladeNode.InnerText = ((int)timeEntry.SamuraiBlade).ToString();
                 satelliteLaserNode.InnerText = ((int)timeEntry.SatelliteLaser).ToString();
@@ -164,6 +184,9 @@ namespace Shadow100DataInput.Classes
                 timeEntryNode.AppendChild(keysNode);
 
                 timeEntryNode.AppendChild(missionIndexNode);
+
+                timeEntryNode.AppendChild(usesKeyDoorNode);
+                timeEntryNode.AppendChild(noCCGNode);
 
                 weaponStatesNode.AppendChild(samuraiBladeNode);
                 weaponStatesNode.AppendChild(satelliteLaserNode);
