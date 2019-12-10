@@ -97,7 +97,7 @@ namespace Shadow100DataInput
 
             common.Levels.Add(new Level()
             {
-                Name = "Digital Curcuit",
+                Name = "Digital Circuit",
                 Missions = new List<Level.MissionType>() { Level.MissionType.Dark, Level.MissionType.Hero }
             });
 
