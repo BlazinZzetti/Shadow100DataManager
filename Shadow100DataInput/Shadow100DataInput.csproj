@@ -49,12 +49,19 @@
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Classes\Level.cs" />
     <Compile Include="Classes\Profile.cs" />
+    <Compile Include="Classes\Reports.cs" />
     <Compile Include="Classes\TimeEntry.cs" />
     <Compile Include="ConfirmUpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConfirmUpdateForm.Designer.cs">
       <DependentUpon>ConfirmUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MergeProfilesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MergeProfilesForm.Designer.cs">
+      <DependentUpon>MergeProfilesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -81,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MergeProfilesForm.resx">
+      <DependentUpon>MergeProfilesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartupProfileCreationForm.resx">
       <DependentUpon>StartupProfileCreationForm.cs</DependentUpon>

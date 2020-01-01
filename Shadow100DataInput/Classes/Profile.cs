@@ -68,7 +68,7 @@ namespace Shadow100DataInput.Classes
                                         for (int k = 0; k < 5; k++)
                                         {
                                             timeEntry.Keys[k] = bool.Parse(j.ChildNodes[k].InnerText);
-                                        }                                        
+                                        }
                                     }
                                     if (j.Name == "MissionIndex")
                                     {
@@ -117,6 +117,47 @@ namespace Shadow100DataInput.Classes
             profileName = name;
             fileLocation = filePath;
             timeEntries = new List<TimeEntry>();
+        }
+
+        public static Profile NewMergedProfile(string name, Profile a, Profile b)
+        {
+            var newProfile = new Profile();
+
+            newProfile.profileName = name;
+            newProfile.timeEntries = new List<TimeEntry>(a.timeEntries);
+
+            foreach (var B_TimeEntry in b.timeEntries)
+            {
+                var duplicateEntry = newProfile.FindTimeEntry(B_TimeEntry);
+                if (duplicateEntry != null && duplicateEntry.Time < B_TimeEntry.Time)
+                {
+                    duplicateEntry.Time = B_TimeEntry.Time;
+                    duplicateEntry.VideoLink = B_TimeEntry.VideoLink;
+                }
+                else
+                {
+                    newProfile.TimeEntries.Add(B_TimeEntry);
+                }
+            }
+
+            return newProfile;
+        }
+
+        public void CopyBetterTimesAtoB(Profile a, Profile b)
+        { 
+            foreach (var A_TimeEntry in a.timeEntries)
+            {
+                var duplicateEntry = b.FindTimeEntry(A_TimeEntry);
+                if (duplicateEntry != null && duplicateEntry.Time < A_TimeEntry.Time)
+                {
+                    duplicateEntry.Time = A_TimeEntry.Time;
+                    duplicateEntry.VideoLink = A_TimeEntry.VideoLink;
+                }
+                else
+                {
+                    b.TimeEntries.Add(A_TimeEntry);
+                }
+            }
         }
 
         public void Save()
@@ -205,6 +246,10 @@ namespace Shadow100DataInput.Classes
             baseNode.AppendChild(timeEntriesNode);
             xml.AppendChild(baseNode);
 
+            if (fileLocation == null)
+            {
+                fileLocation = Common.Instance.DatabaseLocation + "\\" + profileName + ".xshadowprofile";
+            }
             xml.Save(fileLocation);
         }
 

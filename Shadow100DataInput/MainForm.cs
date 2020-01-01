@@ -505,5 +505,32 @@ namespace Shadow100DataInput
                 common.Save();
             }
         }
+
+        private void mergeProfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Check if a location exists.
+            if (common.Profiles.Count >= 2)
+            {
+                MergeProfilesForm mergeProfilesForm = new MergeProfilesForm();
+                mergeProfilesForm.ShowDialog();
+                RefreshForm();
+            }
+            else
+            {
+                MessageBox.Show("More than 2 profiles need to be loaded to allow merging.");
+            }
+        }
+
+        private void allEndingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Reports
+                .GenerateAllEndingsReport(common.Profiles[common.ProfileIndex]));
+        }
+
+        private void hundoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Reports
+                .GenerateHundoReport(common.Profiles[common.ProfileIndex]));
+        }
     }
 }
